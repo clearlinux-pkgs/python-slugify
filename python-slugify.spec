@@ -4,7 +4,7 @@
 #
 Name     : python-slugify
 Version  : 2.0.1
-Release  : 1
+Release  : 2
 URL      : https://files.pythonhosted.org/packages/1f/9c/8b07d625e9c9df567986d887f0375075abb1923e49d074a7803cd1527dae/python-slugify-2.0.1.tar.gz
 Source0  : https://files.pythonhosted.org/packages/1f/9c/8b07d625e9c9df567986d887f0375075abb1923e49d074a7803cd1527dae/python-slugify-2.0.1.tar.gz
 Summary  : A Python slugify application that handles unicode
