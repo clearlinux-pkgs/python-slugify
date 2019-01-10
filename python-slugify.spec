@@ -4,15 +4,17 @@
 #
 Name     : python-slugify
 Version  : 2.0.1
-Release  : 2
+Release  : 3
 URL      : https://files.pythonhosted.org/packages/1f/9c/8b07d625e9c9df567986d887f0375075abb1923e49d074a7803cd1527dae/python-slugify-2.0.1.tar.gz
 Source0  : https://files.pythonhosted.org/packages/1f/9c/8b07d625e9c9df567986d887f0375075abb1923e49d074a7803cd1527dae/python-slugify-2.0.1.tar.gz
 Summary  : A Python slugify application that handles unicode
 Group    : Development/Tools
 License  : MIT
 Requires: python-slugify-bin = %{version}-%{release}
+Requires: python-slugify-license = %{version}-%{release}
 Requires: python-slugify-python = %{version}-%{release}
 Requires: python-slugify-python3 = %{version}-%{release}
+Requires: Unidecode
 BuildRequires : buildreq-distutils3
 
 %description
@@ -23,9 +25,18 @@ Python Slugify
 %package bin
 Summary: bin components for the python-slugify package.
 Group: Binaries
+Requires: python-slugify-license = %{version}-%{release}
 
 %description bin
 bin components for the python-slugify package.
+
+
+%package license
+Summary: license components for the python-slugify package.
+Group: Default
+
+%description license
+license components for the python-slugify package.
 
 
 %package python
@@ -54,12 +65,14 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1547134706
+export SOURCE_DATE_EPOCH=1547137206
 export MAKEFLAGS=%{?_smp_mflags}
 python3 setup.py build
 
 %install
 rm -rf %{buildroot}
+mkdir -p %{buildroot}/usr/share/package-licenses/python-slugify
+cp LICENSE %{buildroot}/usr/share/package-licenses/python-slugify/LICENSE
 python3 -tt setup.py build  install --root=%{buildroot}
 echo ----[ mark ]----
 cat %{buildroot}/usr/lib/python3*/site-packages/*/requires.txt || :
@@ -71,6 +84,10 @@ echo ----[ mark ]----
 %files bin
 %defattr(-,root,root,-)
 /usr/bin/slugify
+
+%files license
+%defattr(0644,root,root,0755)
+/usr/share/package-licenses/python-slugify/LICENSE
 
 %files python
 %defattr(-,root,root,-)
