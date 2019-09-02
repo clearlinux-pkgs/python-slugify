@@ -4,10 +4,10 @@
 #
 Name     : python-slugify
 Version  : 3.0.3
-Release  : 9
+Release  : 10
 URL      : https://files.pythonhosted.org/packages/a2/5d/bd30413c00bbed3945558aca07c55944073e1e30abeee1f06515281f9811/python-slugify-3.0.3.tar.gz
 Source0  : https://files.pythonhosted.org/packages/a2/5d/bd30413c00bbed3945558aca07c55944073e1e30abeee1f06515281f9811/python-slugify-3.0.3.tar.gz
-Summary  : A Python slugify application that handles unicode
+Summary  : A Python Slugify application that handles Unicode
 Group    : Development/Tools
 License  : MIT
 Requires: python-slugify-bin = %{version}-%{release}
@@ -19,6 +19,7 @@ Requires: text-unidecode
 BuildRequires : Unidecode
 BuildRequires : buildreq-distutils3
 BuildRequires : text-unidecode
+Patch1: 0001-Unfreeze-text-unidecode.patch
 
 %description
 Python Slugify
@@ -62,13 +63,14 @@ python3 components for the python-slugify package.
 
 %prep
 %setup -q -n python-slugify-3.0.3
+%patch1 -p1
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1564417831
+export SOURCE_DATE_EPOCH=1567444306
 export GCC_IGNORE_WERROR=1
 export CFLAGS="$CFLAGS -fno-lto "
 export FCFLAGS="$CFLAGS -fno-lto "
