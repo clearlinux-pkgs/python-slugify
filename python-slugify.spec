@@ -4,7 +4,7 @@
 #
 Name     : python-slugify
 Version  : 4.0.0
-Release  : 15
+Release  : 16
 URL      : https://files.pythonhosted.org/packages/92/5f/7b84a0bba8a0fdd50c046f8b57dcf179dc16237ad33446079b7c484de04c/python-slugify-4.0.0.tar.gz
 Source0  : https://files.pythonhosted.org/packages/92/5f/7b84a0bba8a0fdd50c046f8b57dcf179dc16237ad33446079b7c484de04c/python-slugify-4.0.0.tar.gz
 Summary  : A Python slugify application that handles unicode
@@ -22,9 +22,7 @@ BuildRequires : text-unidecode
 BuildRequires : util-linux
 
 %description
-Python Slugify
-====================
-**A Python slugify application that handles unicode**.
+A Python Slugify application that handles Unicode
 
 %package bin
 Summary: bin components for the python-slugify package.
@@ -56,6 +54,7 @@ python components for the python-slugify package.
 Summary: python3 components for the python-slugify package.
 Group: Default
 Requires: python3-core
+Provides: pypi(python-slugify)
 
 %description python3
 python3 components for the python-slugify package.
@@ -63,13 +62,14 @@ python3 components for the python-slugify package.
 
 %prep
 %setup -q -n python-slugify-4.0.0
+cd %{_builddir}/python-slugify-4.0.0
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1571676406
+export SOURCE_DATE_EPOCH=1583214942
 # -Werror is for werrorists
 export GCC_IGNORE_WERROR=1
 export CFLAGS="$CFLAGS -fno-lto "
